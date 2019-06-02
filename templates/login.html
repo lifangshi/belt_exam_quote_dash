@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Login Quote Dash</title>
+    <script>
+        
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <form action="/registration" method="post"> 
+                    {% with messages = get_flashed_messages() %}         
+                    {% if messages %}                                 
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <br>
+                    Register
+                    <br>
+                    First Name: <input type="text" name = "first_name">
+                    <br>
+                    Last Name: <input type="text" name = "last_name">
+                    <br>
+                    Email: <input type="text" name = "email">
+                    <br>
+                    Password: <input type="text" name = "password">
+                    <br>
+                    Confirm password: <input type="text" name = "confirm_password">
+                    <br>
+                    <input type="submit" value="Register">
+                </form>
+
+            </td>
+            <td>
+                <form action="/login" method="post">
+                    Login
+                    <br>
+                    Email: <input type="text" name = "email">
+                    <br>
+                    Password: <input type ="text" name = "password">
+                    <br>
+                    <input type="submit" value="Login">
+                </form>
+            </td>
+        </tr>
+    </table>
+    
+    
+</body>
+</html>

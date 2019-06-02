@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>View Quote</title>
+    <style>
+      .quote{
+        border: 2px solid black;
+        width: 200px;
+      }
+      .quote p{
+        width:200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href='/quotes'>Back</a>&nbsp<button><a href = "/logout">Logout</a></button>
+    <br>
+    {{user['first_name']}} {{user['last_name']}}'s quotes<br><br>
+
+    {% for quote in quotes %}
+    <div class ="quote">
+        <p>{{quote['author']}}: "{{ quote["quote"] }}"<br></p>
+    </div>
+    <br>
+{% endfor %}
+  </body>
+</html>
+

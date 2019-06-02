@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trip Buddy Dashboard</title>
+    <style>
+    .quote{
+        border: 2px solid black;
+    }
+    </style>
+</head>
+<body>
+
+
+    Hello {{user['first_name']}}! <a href="/edit">Edit My Account</a><button><a href = "/logout">Logout</a></button>
+    <br>
+    {% with messages = get_flashed_messages() %}         
+    {% if messages %}                                 
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}   
+    <table>
+
+        <tr>
+            <td class="show_quote">
+                <p>Quotes</p>
+                {% for quote in all_quotes %}
+                    <div class ="quote">
+                        {{quote['author']}}: "{{ quote["quote"] }}"<br>
+                        <br>
+                        Posted by <a href="/user/{{quote['user_id']}}">{{ quote["user_name"] }}</a>
+                        <br><br>
+                        <!-- LIKE -->
+                        {{quote['like_count']}} people like this &nbsp;
+                        <button><a href="/like/{{quote['id']}}">Like</button>
+                        
+                        {% if quote['user_id'] == session['user_id'] %}
+                            <br><br>
+                            <a href="/delete/{{quote['id']}}">Delete</a>
+                        {% endif%}
+                    </div>
+                    <br>
+                {% endfor %}
+            </td>
+
+            <td class="add_quote">
+
+                <form action="/quotes/create" method="POST">
+                    <p>Add a Quote!</p>
+                    <p>Author:
+                    <input type="text" name="author"></p>
+                    <p>Quote: <textarea name ="quote"></textarea></p>
+                    <input type="submit" value="Submit">
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
